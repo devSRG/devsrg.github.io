@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Sudoku Puzzle</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="../src/sudoku.js"></script>
+    <script src="../src/main.js"> </script>
+  </head>
+  <body>
+    <header>
+      <div class="theme-setting"><span>Theme</span>
+        <div class="theme" onclick="toggleTheme()" role="button" aria-pressed="false" aria-label="Change theme"></div>
+      </div>
+    </header>
+    <main>
+      <h1>Sudoku</h1>
+      <div class="sudoku" aria-hidden="true">
+        <div class="row">
+          <div class="grid">
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="0" data-col="0" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="0" data-col="1"></div>
+              <div class="cell" onclick="editContent(event)" data-row="0" data-col="2"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="1" data-col="0" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="1" data-col="1"></div>
+              <div class="cell" onclick="editContent(event)" data-row="1" data-col="2"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="2" data-col="0" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="2" data-col="1"></div>
+              <div class="cell" onclick="editContent(event)" data-row="2" data-col="2"></div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="0" data-col="3" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="0" data-col="4"></div>
+              <div class="cell" onclick="editContent(event)" data-row="0" data-col="5"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="1" data-col="3" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="1" data-col="4"></div>
+              <div class="cell" onclick="editContent(event)" data-row="1" data-col="5"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="2" data-col="3" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="2" data-col="4"></div>
+              <div class="cell" onclick="editContent(event)" data-row="2" data-col="5"></div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="0" data-col="6" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="0" data-col="7"></div>
+              <div class="cell" onclick="editContent(event)" data-row="0" data-col="8"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="1" data-col="6" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="1" data-col="7"></div>
+              <div class="cell" onclick="editContent(event)" data-row="1" data-col="8"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="2" data-col="6" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="2" data-col="7"></div>
+              <div class="cell" onclick="editContent(event)" data-row="2" data-col="8"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="grid">
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="3" data-col="0" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="3" data-col="1"></div>
+              <div class="cell" onclick="editContent(event)" data-row="3" data-col="2"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="4" data-col="0" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="4" data-col="1"></div>
+              <div class="cell" onclick="editContent(event)" data-row="4" data-col="2"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="5" data-col="0" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="5" data-col="1"></div>
+              <div class="cell" onclick="editContent(event)" data-row="5" data-col="2"></div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="3" data-col="3" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="3" data-col="4"></div>
+              <div class="cell" onclick="editContent(event)" data-row="3" data-col="5"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="4" data-col="3" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="4" data-col="4"></div>
+              <div class="cell" onclick="editContent(event)" data-row="4" data-col="5"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="5" data-col="3" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="5" data-col="4"></div>
+              <div class="cell" onclick="editContent(event)" data-row="5" data-col="5"></div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="3" data-col="6" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="3" data-col="7"></div>
+              <div class="cell" onclick="editContent(event)" data-row="3" data-col="8"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="4" data-col="6" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="4" data-col="7"></div>
+              <div class="cell" onclick="editContent(event)" data-row="4" data-col="8"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="5" data-col="6" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="5" data-col="7"></div>
+              <div class="cell" onclick="editContent(event)" data-row="5" data-col="8"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="grid">
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="6" data-col="0" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="6" data-col="1"></div>
+              <div class="cell" onclick="editContent(event)" data-row="6" data-col="2"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="7" data-col="0" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="7" data-col="1"></div>
+              <div class="cell" onclick="editContent(event)" data-row="7" data-col="2"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="8" data-col="0" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="8" data-col="1"></div>
+              <div class="cell" onclick="editContent(event)" data-row="8" data-col="2"></div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="6" data-col="3" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="6" data-col="4"></div>
+              <div class="cell" onclick="editContent(event)" data-row="6" data-col="5"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="7" data-col="3" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="7" data-col="4"></div>
+              <div class="cell" onclick="editContent(event)" data-row="7" data-col="5"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="8" data-col="3" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="8" data-col="4"></div>
+              <div class="cell" onclick="editContent(event)" data-row="8" data-col="5"></div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="6" data-col="6" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="6" data-col="7"></div>
+              <div class="cell" onclick="editContent(event)" data-row="6" data-col="8"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="7" data-col="6" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="7" data-col="7"></div>
+              <div class="cell" onclick="editContent(event)" data-row="7" data-col="8"></div>
+            </div>
+            <div class="row">
+              <div class="cell" onclick="editContent(event)" data-row="8" data-col="6" tab-index="0"></div>
+              <div class="cell" onclick="editContent(event)" data-row="8" data-col="7"></div>
+              <div class="cell" onclick="editContent(event)" data-row="8" data-col="8"></div>
+            </div>
+          </div>
+        </div>
+        <div class="complete">
+          <p>Complete</p>
+        </div>
+      </div>
+      <div class="btns">
+        <button class="reset" onclick="reset()">Reset</button>
+        <button style="float: right" onclick="newGame()">New Game</button>
+      </div>
+      <div style="clear: both"></div>
+    </main>
+    <footer>
+      <p>Developed with passion and <span style="color: purple">❤</span>. &copy; devsrg</p>
+    </footer>
+  </body>
+</html>

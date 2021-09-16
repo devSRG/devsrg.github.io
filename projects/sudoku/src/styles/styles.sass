@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap')
+
+:root
+    --bg: #eee
+    --color: #444
+    --nav-text: #666
+    --theme-light: #fff
+    --theme-dark: #444
+    --sudoku-bg: #ddd
+    --grid-border: #666
+    --cell-bg-hover: #eee
+    --cell-default-bg: #ccc
+    --cell-border: #aaa
+    --complete-bg: #dddddd99
+    --btn-bg: #aaa
+    --btn-color: #eee
+    --btn-border: #666
+    --btn-bg-hover: #ddd
+    --scrollbar-thumb: #ddd
+
+.dark-mode
+    --bg: #222
+    --color: #ddd
+    --nav-text: #999
+    --theme: #eee
+    --btn-bg-hover: #666
+    --sudoku-bg: #222
+    --grid-border: #4a4a4a
+    --cell-color: #bbb
+    --cell-bg-hover: #2a2a2a
+    --cell-default-bg: #333
+    --cell-border: #444
+    --complete-bg: #33333399
+    --scrollbar-thumb: #666
+
+::selection
+    color: #fff
+    background: #ca64dc
+
+::-webkit-scrollbar
+    width: 20px
+    height: 20px
+
+::-webkit-scrollbar-thumb
+    background: var(--scrollbar-thumb)
+    border: 8px solid var(--bg)
+    border-radius: 10px
+
+::-webkit-scrollbar-corner
+    background: var(--bg)
+    
+html, body
+    margin: 0
+    padding: 0
+
+body
+    width: 100%
+    min-height: 100vh
+    background: var(--bg)
+    font-family: 'Noto Sans JP', sans-serif
+    position: relative
+    transition: background 0.4s ease
+
+h1, h2, h3, h4
+    color: var(--color)
+
+p
+    color: var(--color)
+
+header
+    padding: 20px
+    overflow: hidden
+
+    .theme-setting
+        float: right
+
+        span
+            display: inline-block
+            height: 30px
+            color: var(--nav-text)
+            font-weight: 500
+            font-size: 14px
+            text-transform: uppercase
+            line-height: 30px
+            margin-right: 15px
+            float: left
+
+            .dark-mode & span
+                color: var(--nav-text)
+
+        .theme
+            display: inline-block
+            width: 30px
+            height: 30px
+            background: var(--theme-dark)
+            border-radius: 15px
+            position: relative
+            box-shadow: 0 0 4px 2px #bbb
+            transition: all 0.4s ease-in-out
+            cursor: pointer
+
+            &:hover
+                transform: scale(1)
+
+                &::after
+                    background: var(--bg)
+                    top: -10px
+                    left: -10px
+
+            &::after
+                display: block
+                content: ""
+                width: 30px
+                height: 30px
+                background: var(--theme-light)
+                border-radius: 15px
+                position: absolute
+                top: 0px
+                left: 0px
+                transform: scale(1.1) // to get rid of anti-aliasing issue
+                transition: all 0.4s ease-in-out
+
+            .dark-mode &
+                background: var(--theme-light)
+
+                &:hover
+                    transform: scale(1)
+
+                    &::after
+                        background: var(--theme-light)
+                        top: 0
+                        left: 0
+
+                &::after
+                    background: var(--bg)
+                    top: -10px
+                    left: -10px
+
+main
+    padding: 60px 20px
+
+    h1
+        font-size: 40px
+        text-align: center
+        margin-bottom: 40px
+
+    p
+        color: var(--text)
+
+    .sudoku
+        width: 440px
+        background: var(--sudoku-bg)
+        border: 2px solid var(--grid-border)
+        margin: 0 auto
+        box-sizing: border-box
+        position: relative
+        overflow: hidden
+        user-select: none            
+
+        .grid
+            box-sizing: border-box
+            float: left
+            overflow: hidden
+
+            > .row
+                .cell:nth-child(2n)
+                    border-right: 1px solid var(--cell-border)
+                    border-left: 1px solid var(--cell-border)
+                
+                &:nth-child(2n) .cell
+                    border-top: 1px solid var(--cell-border)
+                    border-bottom: 1px solid var(--cell-border)
+
+        > .row
+            .grid:nth-child(2n)
+                border-right: 2px solid var(--grid-border)
+                border-left: 2px solid var(--grid-border)
+
+            &:nth-child(2n) .grid
+                border-top: 2px solid var(--grid-border)
+                border-bottom: 2px solid var(--grid-border)
+        
+        .cell
+            width: 48px
+            height: 48px
+            color: var(--cell-color)
+            font-size: 28px
+            line-height: 48px
+            text-align: center
+            box-sizing: border-box
+            float: left
+            overflow: hidden
+            transition: background 0.2s ease
+
+            &:hover
+                background: var(--cell-bg-hover)
+
+            &.highlight
+                color: #dd6666 !important
+
+            &.default
+                background: var(--cell-default-bg)
+
+            input
+                display: block
+                width: calc(100% + 18px)
+                height: 100%
+                color: var(--text)
+                background: var(--cell-bg-hover)
+                font: inherit
+                text-align: center
+                line-height: inherit
+                border: 0
+                outline: 0
+                box-sizing: border-box
+        
+        .complete
+            display: none
+            width: 100%
+            height: 100%
+            background: var(--complete-bg)
+            font-size: 1.2rem
+            position: absolute
+
+            p
+                width: 100%
+                color: var(--color)
+                background: var(--bg)
+                font-size: 1.6rem
+                font-weight: 500
+                text-transform: uppercase
+                text-align: center
+                padding: 30px
+                margin: 0
+                transform: translateY(-50%)
+                position: absolute
+                top: 120%
+                box-sizing: border-box
+                transition: top 0.4s ease-in
+
+            &.show
+                display: block
+                
+                p
+                    top: 50%
+
+    .btns
+        width: 440px
+        margin: 20px auto
+        overflow: hidden
+
+        button
+            color: var(--color)
+            background: none
+            font: inherit
+            padding: 8px 16px
+            border: 2px solid var(--btn-border)
+            border-radius: 24px
+            transition: background 0.4s ease
+            outline: 0
+            user-select: none
+            cursor: pointer
+
+            &:not(:disabled):hover, &:not(:disabled):focus
+                background: var(--btn-bg-hover)
+
+            &:disabled
+                opacity: 0.6
+                cursor: default
+
+footer
+    width: 100%
+    position: absolute
+    bottom: 0
+
+    p
+        font-size: 0.8rem
+        text-align: center
+
+@media screen and (max-width: 480px)
+    body
+        height: auto
+
+    main
+        padding: 20px
+
+        h1
+            font-size: 30px
+            margin-top: 0
+            margin-bottom: 20px
+
+        .sudoku
+            width: 100%
+
+            .cell
+                width: calc((100vw - 48px) / 9)
+                height: calc((100vw - 48px) / 9)
+                font-size: 24px
+                line-height: calc((100vw - 48px) / 9)
+
+        .btns
+            width: 100%
+
+            button
+                padding: 4px 12px
+
+@media screen and (max-width: 320px)
+    main
+        .sudoku .cell
+            font-size: 16px
