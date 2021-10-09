@@ -12,7 +12,6 @@ class Sudoku {
         this.grid = this.createGrid(0);
         this.randomizeGrid(18);
         this.solve();
-        console.log('Grid:', this.grid, '\n')
     }
 
     solve() {
@@ -21,17 +20,12 @@ class Sudoku {
 
     findSolution(solution, row = 0, col = 0) {
         this.count++;
-        if (this.count >= 200000) { // ~200ms
-            console.log('Iterations exceeded', this.count);
+        if (this.count >= 1000) {
             return;
         }
         if (row == 9) {
             if (this.isValidGrid(solution)) {
-                console.log('Valid solution', this.count)
                 this.solution = this.copyGrid(solution);
-                return;
-            } else {
-                console.log('Wrong solution');
                 return;
             }
         } else if (this.grid[row][col] != 0) {
@@ -50,14 +44,14 @@ class Sudoku {
             let validOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9], candidates = [];
             let adjRow, adjCol;
 
-            for (var i = 0; i < validOptions.length; i++) {
+            for (let i = 0; i < validOptions.length; i++) {
                 if (this.isValidInsertion(row, col, validOptions[i], solution)) {
                     candidates.push(validOptions[i]);
                 }
             }
             
             if (!this.solution.length) {
-                for (var j = 0; j < candidates.length; j++) {
+                for (let j = 0; j < candidates.length; j++) {
                     solution[row][col] = candidates[j];
 
                     if (col == 8) {
@@ -70,7 +64,7 @@ class Sudoku {
 
                     this.findSolution(solution, adjRow, adjCol);
 
-                    // reset solution to previous
+                    // reset solution to previous state
                     solution[row][col] = 0;
                 }
             }
@@ -81,6 +75,27 @@ class Sudoku {
         return this.validateGridRows(solution) &&
                 this.validateGridColumns(solution) &&
                 this.validateGridBoxes(solution);
+    }
+
+    isValidInsertion(row, col, value, grid) {
+        return !this.getGridRow(row, grid).includes(value) &&
+            !this.getGridColumn(col, grid).includes(value) &&
+            !this.getGridBox(row, col, grid).includes(value);
+    }
+
+    validateSolution(values) {
+        let valid = true;
+
+        for (let i = 0; i < this.solution.length; i++) {
+            for (let j = 0; j < this.solution.length; j++) {
+                if (values[i][j] != this.solution[i][j]) {
+                    valid = false;
+                    break;
+                }
+            }
+        }
+
+        return valid;
     }
 
     validateGridRows(solution) {
@@ -121,12 +136,6 @@ class Sudoku {
         }
 
         return true;
-    }
-
-    isValidInsertion(row, col, value, grid) {
-        return !this.getGridRow(row, grid).includes(value) &&
-            !this.getGridColumn(col, grid).includes(value) &&
-            !this.getGridBox(row, col, grid).includes(value);
     }
 
     getGridRow(row, grid) {
@@ -224,8 +233,8 @@ class Sudoku {
                 return false;
             }
         };
-        let c3 = 0;
-        for (var i = 0; i < count; i++) {
+
+        for (let i = 0; i < count; i++) {
             let c2 = 0;
             let filled = randomFillGrid();
 

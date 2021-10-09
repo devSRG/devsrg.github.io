@@ -25,7 +25,7 @@
   --theme: #eee;
   --btn-bg-hover: #666;
   --sudoku-bg: #222;
-  --grid-border: #4a4a4a;
+  --grid-border: #666;
   --cell-color: #bbb;
   --cell-bg-hover: #2a2a2a;
   --cell-default-bg: #333;
@@ -108,10 +108,10 @@ header .theme-setting .theme {
   transition: all 0.4s ease-in-out;
   cursor: pointer;
 }
-header .theme-setting .theme:hover {
+header .theme-setting .theme:hover, header .theme-setting .theme:active {
   transform: scale(1);
 }
-header .theme-setting .theme:hover::after {
+header .theme-setting .theme:hover::after, header .theme-setting .theme:active::after {
   background: var(--bg);
   top: -10px;
   left: -10px;
@@ -132,10 +132,10 @@ header .theme-setting .theme::after {
 .dark-mode header .theme-setting .theme {
   background: var(--theme-light);
 }
-.dark-mode header .theme-setting .theme:hover {
+.dark-mode header .theme-setting .theme:hover, .dark-mode header .theme-setting .theme:active {
   transform: scale(1);
 }
-.dark-mode header .theme-setting .theme:hover::after {
+.dark-mode header .theme-setting .theme:hover::after, .dark-mode header .theme-setting .theme:active::after {
   background: var(--theme-light);
   top: 0;
   left: 0;
@@ -198,7 +198,7 @@ main .sudoku .cell {
   box-sizing: border-box;
   float: left;
   overflow: hidden;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease-out;
 }
 main .sudoku .cell:hover {
   background: var(--cell-bg-hover);
