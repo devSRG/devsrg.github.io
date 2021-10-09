@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', onload);
-    
+
 function onload() {
     let sudoku, cells, userInput;
     let iter = 0, MAX_ITERATIONS = 10;
@@ -12,8 +12,6 @@ function onload() {
         sudoku.generate();
         iter++;
     }
-
-    console.log(sudoku.solution)
 
     Array.from(cells).forEach(cell => cell.addEventListener('click', editContent));
     document.getElementsByClassName('theme')[0].addEventListener('click', toggleTheme);
@@ -35,10 +33,10 @@ function onload() {
 
     function editContent(e) {
         let cell = e.target;
-        
+
         if (!cell.dataset.default && !cell.children.length) {
             let input = document.createElement('input');
-        
+
             input.type = 'number';
             input.value = cell.innerText;
             input.max = 9;
@@ -57,7 +55,7 @@ function onload() {
         if (input.value != '') {
             highlightConflicts(parseInt(input.value), parseInt(cell.dataset.row), parseInt(cell.dataset.col));
         } else {
-            removeHighlightedConflicts();   
+            removeHighlightedConflicts();
         }
 
         userInput[cell.dataset.row][cell.dataset.col] = parseInt(input.value) || 0;
