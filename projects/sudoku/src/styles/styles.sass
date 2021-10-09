@@ -25,7 +25,7 @@
     --theme: #eee
     --btn-bg-hover: #666
     --sudoku-bg: #222
-    --grid-border: #4a4a4a
+    --grid-border: #666
     --cell-color: #bbb
     --cell-bg-hover: #2a2a2a
     --cell-default-bg: #333
@@ -99,7 +99,7 @@ header
             transition: all 0.4s ease-in-out
             cursor: pointer
 
-            &:hover
+            &:hover, &:active
                 transform: scale(1)
 
                 &::after
@@ -123,7 +123,7 @@ header
             .dark-mode &
                 background: var(--theme-light)
 
-                &:hover
+                &:hover, &:active
                     transform: scale(1)
 
                     &::after
@@ -190,7 +190,7 @@ main
             box-sizing: border-box
             float: left
             overflow: hidden
-            transition: background 0.2s ease
+            transition: background 0.2s ease-out
 
             &:hover
                 background: var(--cell-bg-hover)
