@@ -12,7 +12,7 @@ html(lang="en")
     header
       .theme-setting
         span Theme
-        .theme(onclick="toggleTheme()" role="button" aria-pressed="false" aria-label="Change theme")
+        .theme(role="button" aria-pressed="false" aria-label="Change theme")
     main
       h1 Sudoku
       .sudoku(aria-hidden="true")
@@ -23,14 +23,14 @@ html(lang="en")
                 - for (var x = 0; x < 9; x++)
                   if (x % 3 == 0)
                     .row
-                      .cell(onclick="editContent(event)" data-row=(x / 3) + (3 * i) data-col=(x % 3) + (3 * j) tab-index="0")
-                      .cell(onclick="editContent(event)" data-row=(x / 3) + (3 * i) data-col=((x + 1) % 3) + (3 * j))
-                      .cell(onclick="editContent(event)" data-row=(x / 3) + (3 * i) data-col=((x + 2) % 3) + (3 * j))
+                      .cell(data-row=(x / 3) + (3 * i) data-col=((x + 0) % 3) + (3 * j))
+                      .cell(data-row=(x / 3) + (3 * i) data-col=((x + 1) % 3) + (3 * j))
+                      .cell(data-row=(x / 3) + (3 * i) data-col=((x + 2) % 3) + (3 * j))
         .complete
           p Complete
       .btns
-        button.reset(onclick="reset()") Reset
-        button(style="float: right" onclick="newGame()") New Game
+        button.reset Reset
+        button.new-game(style="float: right") New Game
       div(style="clear: both")
     footer
       p Developed with passion and 

@@ -21,7 +21,6 @@ class Sudoku {
     findSolution(solution, row = 0, col = 0) {
         this.count++;
         if (this.count >= 1000) {
-            console.log('Iterations exceeded', this.count);
             return;
         }
         if (row == 9) {
@@ -78,6 +77,27 @@ class Sudoku {
                 this.validateGridBoxes(solution);
     }
 
+    isValidInsertion(row, col, value, grid) {
+        return !this.getGridRow(row, grid).includes(value) &&
+            !this.getGridColumn(col, grid).includes(value) &&
+            !this.getGridBox(row, col, grid).includes(value);
+    }
+
+    validateSolution(values) {
+        let valid = true;
+
+        for (let i = 0; i < this.solution.length; i++) {
+            for (let j = 0; j < this.solution.length; j++) {
+                if (values[i][j] != this.solution[i][j]) {
+                    valid = false;
+                    break;
+                }
+            }
+        }
+
+        return valid;
+    }
+
     validateGridRows(solution) {
         return solution.every(arr => {
             let row = new Set(arr);
@@ -116,12 +136,6 @@ class Sudoku {
         }
 
         return true;
-    }
-
-    isValidInsertion(row, col, value, grid) {
-        return !this.getGridRow(row, grid).includes(value) &&
-            !this.getGridColumn(col, grid).includes(value) &&
-            !this.getGridBox(row, col, grid).includes(value);
     }
 
     getGridRow(row, grid) {
