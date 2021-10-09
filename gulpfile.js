@@ -6,6 +6,7 @@ const rename = require('gulp-rename');
 const fs = require('fs');
 const util = require('util');
 
+const buildDir = 'build';
 let projects = fs.readdirSync('projects');
 
 function buildAllProjects() {
@@ -20,19 +21,18 @@ function buildAllProjects() {
     });
 
     return Promise.allSettled(promises)
-        .then(() => console.log('Projects built successfully'))
         .catch(err => console.log('Error building projects', err));
 }
 
 function clean() {
-    return del(['build']);
+    return del([`${buildDir}`]);
 }
 
 function buildHtml(project, cb) {
     src(`./projects/${project}/src/**/*.pug`)
         .pipe(pug({pretty: true}))
         .pipe(rename({dirname: ''}))
-        .pipe(dest(`./build/${project}`));
+        .pipe(dest(`./${buildDir}/${project}`));
 
     cb();
 }
@@ -41,7 +41,7 @@ function buildCSS(project, cb) {
     src(`./projects/${project}/src/**/*.sass`)
         .pipe(sass())
         .pipe(rename({dirname: ''}))
-        .pipe(dest(`./build/${project}`));
+        .pipe(dest(`./${buildDir}/${project}`));
 
     cb();
 }
@@ -49,7 +49,7 @@ function buildCSS(project, cb) {
 function copyJS(project, cb) {
     src(`./projects/${project}/src/**/*.js`)
         .pipe(rename({dirname: ''}))
-        .pipe(dest(`./build/${project}`));
+        .pipe(dest(`./${buildDir}/${project}`));
 
     cb();
 }

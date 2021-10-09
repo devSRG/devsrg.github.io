@@ -12,8 +12,9 @@ class CommonRegistry extends DefaultRegistry {
         opts = opts || {};
 
         this.buildDir = opts.buildDir || './build';
-        this.viewsSrc = opts.viewsSrc || './projects/**/*.pug';
-        this.stylesDir = opts.stylesDir || './projects/**/*.sass';
+        this.viewsDir = opts.viewsDir || './src/**/*.pug';
+        this.stylesDir = opts.stylesDir || './src/**/*.sass';
+        this.jsDir = opts.jsDir || './src/**/*.js';
     }
 
     init(gulpInst) {
@@ -26,14 +27,21 @@ class CommonRegistry extends DefaultRegistry {
         }.bind(this));
 
         gulpInst.task('buildHtml', function () {
-            return src(this.viewsSrc)
+            return src(this.viewsDir)
                 .pipe(pug({pretty: true}))
+                .pipe(rename({dirname: ''}))
                 .pipe(dest(this.buildDir));
         }.bind(this));
 
         gulpInst.task('buildStyles', function () {
             return src(this.stylesDir)
                 .pipe(sass())
+                .pipe(rename({dirname: ''}))
+                .pipe(dest(this.buildDir));
+        }.bind(this));
+
+        gulpInst.task('copyJS', function () {
+            return src(this.jsDir)
                 .pipe(rename({dirname: ''}))
                 .pipe(dest(this.buildDir));
         }.bind(this));
