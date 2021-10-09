@@ -15,6 +15,9 @@ const server = http.createServer((req, res) => {
         file = path.parse(pathname);
 
         switch (file.ext) {
+            case '.html':
+                mimeType = 'text/html';
+                break;
             case '.css':
                 mimeType = 'text/css';
                 break;
